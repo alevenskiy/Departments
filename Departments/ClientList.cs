@@ -18,6 +18,10 @@ namespace Departments
 
         #region IList inheritance 
 
+        public ClientList()
+        {
+            clients = new Client[0];
+        }
 
         /// <summary>
         /// Экземпляр Client, возвращает null если такого нет
@@ -184,11 +188,11 @@ namespace Departments
 
             public void Dispose()
             {
-                for(int i = 0; i < data.Length; i++)
-                {
-                    data[i] = null;
-                }
-                data = null;
+                //for(int i = 0; i < data.Length; i++)
+                //{
+                //    data[i] = null;
+                //}
+                //data = null;
             }
 
             public object Current
@@ -219,6 +223,21 @@ namespace Departments
         }
 
         #endregion
+
+        public ClientList GetDepartment(string department)
+        {
+            ClientList result = new ClientList();
+
+            foreach(Client client in this)
+            {
+                if(client.Department == department)
+                {
+                    result.Add(client);
+                }
+            }
+
+            return result;
+        }
 
         public void Deserialize(string path)
         {

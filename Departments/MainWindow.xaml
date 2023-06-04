@@ -4,9 +4,79 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Departments"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.RowSpan="2" Margin="5">
+            <DockPanel Margin="5" Height="41.5">
+                <CheckBox x:Name="chb_create_dep" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Create" Margin="5 0 0 0" Background="#FF673AB7" Click="chb_create_dep_Click"/>
+                <Grid>
+                    <TextBox x:Name="text_dep" FontSize="14" materialDesign:HintAssist.Hint="Department" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox x:Name="cb_client_dep" FontSize="14"/>
+                </Grid>
+            </DockPanel>
+
+            <TextBox x:Name="text_surname" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Surname" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox x:Name="text_name" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox x:Name="text_secondname" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Second Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox x:Name="text_phone" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Phone" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox x:Name="text_passport" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Passport" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+            <Grid>
+                <Button x:Name="butt_save" Content="Save" Margin="5" HorizontalAlignment="Left"/>
+                <Button x:Name="butt_cancel" Content="Cancel" Margin="5" HorizontalAlignment="Right"/>
+            </Grid>
+        </StackPanel>
+        
+        <DockPanel Grid.Column="1" Grid.Row="0">
+            <DockPanel DockPanel.Dock="Top" >
+                <TextBlock Text="Department -" Style="{StaticResource MaterialDesignBody2TextBlock}" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cb_dep" Margin="5" SelectionChanged="cb_dep_SelectionChanged" SelectedIndex="0"/>
+                
+            </DockPanel>
+
+            <DataGrid x:Name="dg_clients" 
+                      materialDesign:DataGridAssist.CellPadding="4 2 20 2" 
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 20 2" 
+                      CanUserAddRows="False" 
+                      IsReadOnly="True"
+                      Loaded="dg_clients_Loaded" SelectionChanged="dg_clients_SelectionChanged"
+                      />
+
+
+
+            <!--<ListView x:Name="lv_clients" Margin="5" Visibility="Collapsed">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Second name" DisplayMemberBinding="{Binding Secondname}"/>
+                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
+                        <GridViewColumn Header="Passport" DisplayMemberBinding="{Binding Passport}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>-->
+            
+            
+
+        </DockPanel>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Button x:Name="butt_del_dep" Content="Delete Department" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <Button x:Name="butt_create_client" Content="Create Client" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Button x:Name="butt_logout" Content="Log Out" Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            
+        </Grid>
         
     </Grid>
 </Window>

@@ -24,7 +24,7 @@ namespace Departments
         }
 
         public int Id { get; set; }
-        public int DepartmentId { get; set; }
+        public string Department { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Secondname { get; set; }
@@ -34,16 +34,16 @@ namespace Departments
         /// <summary>
         /// Создание клиента
         /// </summary>
-        /// <param name="DepartmentId">ID департамента</param>
+        /// <param name="Department">ID департамента</param>
         /// <param name="Surname">Фамилия</param>
         /// <param name="Name">Имя</param>
         /// <param name="Secondname">Отчество</param>
         /// <param name="Phone">Телефон</param>
         /// <param name="Passport">Паспорт</param>
-        public Client(int DepartmentId, string Surname, string Name, string Secondname, string Phone, string Passport)
+        public Client(string Department, string Surname, string Name, string Secondname, string Phone, string Passport)
         {
             this.Id = NextId();
-            this.DepartmentId = DepartmentId;
+            this.Department = Department;
             this.Surname = Surname;
             this.Name = Name;
             this.Secondname = Secondname;
@@ -55,7 +55,7 @@ namespace Departments
         {
             JObject jObject = new JObject();
             jObject["Id"] = Id;
-            jObject["DepartmentId"] = DepartmentId;
+            jObject["Department"] = Department;
             jObject["Surname"] = Surname;
             jObject["Name"] = Name;
             jObject["Secondname"] = Secondname;
