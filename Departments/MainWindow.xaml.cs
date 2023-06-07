@@ -222,13 +222,20 @@ namespace Departments
             {
                 if (butt_save.Content.ToString() == "Save") // edit client
                 {
-                    if (!string.IsNullOrWhiteSpace(text_dep.Text) &&
-                        !string.IsNullOrWhiteSpace(text_surname.Text) &&
+                    if (!string.IsNullOrWhiteSpace(text_surname.Text) &&
                         !string.IsNullOrWhiteSpace(text_name.Text) &&
                         !string.IsNullOrWhiteSpace(text_secondname.Text) &&
                         !string.IsNullOrWhiteSpace(text_phone.Text) &&
-                        !string.IsNullOrWhiteSpace(text_passport.Text))
+                        !string.IsNullOrWhiteSpace(text_passport.Text) &&
+                        (
+                            (
+                                chb_create_dep.IsChecked == true && !string.IsNullOrWhiteSpace(text_dep.Text) // if department from textbox and it not null
+                            )
+                            || chb_create_dep.IsChecked == false // if department from combobox
+                        ) 
+                       )
                     {
+
                         if(chb_create_dep.IsChecked == true)
                             (employee as Manager).DepartmentChange((Client)dg_clients.SelectedItem, text_dep.Text);
                         else
@@ -253,15 +260,29 @@ namespace Departments
                 }
                 else  // create client
                 {
-                    if (!string.IsNullOrWhiteSpace(text_dep.Text) &&
-                        !string.IsNullOrWhiteSpace(text_surname.Text) &&
+                    if (!string.IsNullOrWhiteSpace(text_surname.Text) &&
                         !string.IsNullOrWhiteSpace(text_name.Text) &&
                         !string.IsNullOrWhiteSpace(text_secondname.Text) &&
                         !string.IsNullOrWhiteSpace(text_phone.Text) &&
-                        !string.IsNullOrWhiteSpace(text_passport.Text))
+                        !string.IsNullOrWhiteSpace(text_passport.Text) &&
+                        (
+                            (
+                                chb_create_dep.IsChecked == true && !string.IsNullOrWhiteSpace(text_dep.Text) // if department from textbox and it not null
+                            )
+                            || chb_create_dep.IsChecked == false // if department from combobox
+                        )
+                       )
                     {
+
+                        string department;
+
+                        if (chb_create_dep.IsChecked == true)
+                            department = text_dep.Text;
+                        else
+                            department = cb_client_dep.SelectedItem.ToString();
+
                         Client client = new Client(
-                            text_dep.Text,
+                            department,
                             text_surname.Text,
                             text_name.Text,
                             text_secondname.Text,

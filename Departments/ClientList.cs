@@ -39,7 +39,7 @@ namespace Departments
             set
             {
                 this.clients[index] = value;
-                OnPropertyChanged(); //----------------------------------------------------
+                OnPropertyChanged("Surname");
             }
         }
 
