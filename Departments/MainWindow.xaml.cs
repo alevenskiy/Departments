@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -209,7 +210,10 @@ namespace Departments
                     employee = new Consultant();
             }
             else
-                MessageBox.Show("Log In failed");
+            {
+                //MessageBox.Show("Log In failed");
+                Environment.Exit(0);
+            }
         }
 
         private void butt_save_Click(object sender, RoutedEventArgs e)
@@ -326,11 +330,15 @@ namespace Departments
             if (cb_dep.Text == "All")
             {
                 if (MessageBox.Show(
-                $"Are you sure want to remove all database?",
+                $"Are you sure want to remove entire database?",
                 $"Removal all",
                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    //-----------------------------------------------------------------------------------
+                    (employee as Manager).RemoveAll();
+
+                    employee.SaveClients();
+
+                    MessageBox.Show($"Database removed");
                 }
             }
             else

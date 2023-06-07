@@ -53,5 +53,10 @@ namespace Departments
                     clientlist.Remove(client);
             }
         }
+
+        public void RemoveAll()
+        {
+            clientlist.Clear();
+        }
     }
 }
