@@ -22,7 +22,10 @@
                 <CheckBox x:Name="chb_create_dep" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Create" Margin="5 0 0 0" Background="#FF673AB7" Click="chb_create_dep_Click"/>
                 <Grid>
                     <TextBox x:Name="text_dep" FontSize="14" materialDesign:HintAssist.Hint="Department" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox x:Name="cb_client_dep" FontSize="14"/>
+                    <DockPanel x:Name="dp_client_dep">
+                        <TextBlock Text="Dep. " DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cb_client_dep" FontSize="14"/>
+                    </DockPanel>
                 </Grid>
             </DockPanel>
 
@@ -32,9 +35,11 @@
             <TextBox x:Name="text_phone" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Phone" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             <TextBox x:Name="text_passport" Margin="5" FontSize="14"  materialDesign:HintAssist.Hint="Passport" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
+            <Button x:Name="butt_del_client" Content="Remove Client" Margin="5" HorizontalAlignment="Right" Click="butt_del_client_Click"/>
+
             <Grid>
-                <Button x:Name="butt_save" Content="Save" Margin="5" HorizontalAlignment="Left"/>
-                <Button x:Name="butt_cancel" Content="Cancel" Margin="5" HorizontalAlignment="Right"/>
+                <Button x:Name="butt_save" Content="Save" Margin="5" HorizontalAlignment="Left" Click="butt_save_Click"/>
+                <Button x:Name="butt_cancel" Content="Cancel" Margin="5" HorizontalAlignment="Right" Click="butt_cancel_Click"/>
             </Grid>
         </StackPanel>
         
@@ -50,31 +55,15 @@
                       materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 20 2" 
                       CanUserAddRows="False" 
                       IsReadOnly="True"
-                      Loaded="dg_clients_Loaded" SelectionChanged="dg_clients_SelectionChanged"
+                      SelectionChanged="dg_clients_SelectionChanged"
                       />
-
-
-
-            <!--<ListView x:Name="lv_clients" Margin="5" Visibility="Collapsed">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}"/>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Second name" DisplayMemberBinding="{Binding Secondname}"/>
-                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
-                        <GridViewColumn Header="Passport" DisplayMemberBinding="{Binding Passport}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>-->
-            
-            
 
         </DockPanel>
 
         <Grid Grid.Column="1" Grid.Row="1">
-            <Button x:Name="butt_del_dep" Content="Delete Department" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <Button x:Name="butt_create_client" Content="Create Client" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Button x:Name="butt_logout" Content="Log Out" Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <Button x:Name="butt_del_dep" Content="Remove Department" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Click="butt_del_dep_Click"/>
+            <Button x:Name="butt_create_client" Content="Create Client" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Left" Click="butt_create_client_Click"/>
+            <Button x:Name="butt_logout" Content="Log Out" Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="butt_logout_Click"/>
             
         </Grid>
         

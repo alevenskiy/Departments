@@ -3,15 +3,17 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Departments
 {
-    internal class ClientList : IList<Client>
+    internal class ClientList : IList<Client>, INotifyPropertyChanged
     {
         private Client[] clients;
 
@@ -245,15 +247,21 @@ namespace Departments
 
             try
             {
-                str = File.ReadAllText(path);
+                using(Stream stream = File.Open(path, FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader streamReader = new StreamReader(stream);
+                    str = streamReader.ReadToEnd();
+                }
             }
             catch
             {
                 MessageBox.Show("File does not open");
             }
 
-            clients = JsonConvert.DeserializeObject<Client[]>(str);
+            if(str != "")
+                clients = JsonConvert.DeserializeObject<Client[]>(str);
         }
+
 
         public void Serialize(string path)
         {
@@ -275,5 +283,15 @@ namespace Departments
         }
 
 
+        #region INotifyPropertyChanged inheritance 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        #endregion
     }
 }
