@@ -39,6 +39,7 @@ namespace Departments
             set
             {
                 this.clients[index] = value;
+                OnPropertyChanged(); //----------------------------------------------------
             }
         }
 
@@ -262,7 +263,6 @@ namespace Departments
                 clients = JsonConvert.DeserializeObject<Client[]>(str);
         }
 
-
         public void Serialize(string path)
         {
             JArray array = new JArray();
@@ -281,7 +281,6 @@ namespace Departments
                 MessageBox.Show("File does not open");
             }
         }
-
 
         #region INotifyPropertyChanged inheritance 
 
