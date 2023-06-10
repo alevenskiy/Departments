@@ -47,11 +47,13 @@ namespace Departments
 
         public void RemoveDepartment(string department)
         {
-            foreach (Client client in clientlist)
+            ClientList clients = new ClientList();
+            for(int i = 0; i < clientlist.Count; i++)
             {
-                if(client.Department == department)
-                    clientlist.Remove(client);
+                if (clientlist[i].Department != department)
+                    clients.Add(clientlist[i]);
             }
+            clientlist = clients;
         }
 
         public void RemoveAll()

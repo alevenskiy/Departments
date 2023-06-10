@@ -42,6 +42,7 @@ namespace Departments
             chb_create_dep.IsChecked = false; // checkbox create department in client field
             text_dep.Visibility = Visibility.Collapsed;
             dp_client_dep.Visibility = Visibility.Visible;
+            sp_client.IsEnabled = false;
 
             if (employee is Manager)
             {
@@ -116,6 +117,7 @@ namespace Departments
 
             if (client != null)
             {
+                sp_client.IsEnabled = true;
                 cb_client_dep.SelectedItem = client.Department;
                 text_dep.Text = client.Department;
                 text_surname.Text = client.Surname;
@@ -384,6 +386,7 @@ namespace Departments
 
         private void butt_create_client_Click(object sender, RoutedEventArgs e)
         {
+            sp_client.IsEnabled = true;
             butt_save.Content = "Add";
         }
     }

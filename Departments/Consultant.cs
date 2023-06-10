@@ -19,7 +19,7 @@ namespace Departments
 
         public ClientList DownloadClients()
         {
-            clientlist.Deserialize("clients.json");
+            clientlist = clientlist.Deserialize("clients.json");
             return clientlist;
         }
 
